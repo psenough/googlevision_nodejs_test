@@ -1,0 +1,17 @@
+{
+  "name": "gvision-test",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "@google-cloud/vision": "^0.12.0",
+    "express": "~4.0.0",
+    "multer": "0.1.6",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "engines": {
+    "node": "0.10.x",
+    "npm": ">1.4.0"
+  }
+}

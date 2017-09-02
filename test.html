@@ -1,0 +1,44 @@
+<div class="content-camera">
+
+    <form id="form">
+        <input type='file' name="file" id="file" class="inputfile" onchange="readURL(this);" accept="image/*"/>
+	</form>
+
+	<div id="texto"></div>
+ </div>
+</body>
+
+<script>
+
+function readURL(input) {
+	 if (input.files && input.files[0]) {
+		 var reader = new FileReader();
+		 reader.onload = function (e) {
+			console.log(e.target);
+			testThis(e.target.result);
+		 };
+		 reader.readAsDataURL(input.files[0]);
+	 }
+}
+
+function testThis(image) {
+    var request = new XMLHttpRequest();
+    var fd = new FormData();
+    fd.append('picture', image);
+    request.open('POST', 'http://127.0.0.1:3000/');
+    request.onload = function () {
+        if ((request.status == 200) || (request.status == 204)) {
+			alert(request.responseText);
+			var parsed = JSON.parse(request.responseText);
+			if (parsed) {
+					alert(parsed[0]);
+					document.getElementById('texto').innerHTML = "banana" + parsed[0]['description'];
+			}
+        } else {
+            console.log('Nope');
+        }
+    };
+    request.send(fd);
+}
+
+</script>
